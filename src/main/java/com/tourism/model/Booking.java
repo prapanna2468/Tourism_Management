@@ -12,9 +12,9 @@ public class Booking {
     private String status;
     private String guide;
     private boolean festivalDiscount;
-    
+
     public Booking() {}
-    
+
     public Booking(String bookingId, String tourist, String attraction, LocalDate date, 
                    String difficulty, double price, String status) {
         this.bookingId = bookingId;
@@ -24,45 +24,37 @@ public class Booking {
         this.difficulty = difficulty;
         this.price = price;
         this.status = status;
-        this.festivalDiscount = isFestivalSeason(date);
+        this.festivalDiscount = false;
     }
-    
-    private boolean isFestivalSeason(LocalDate date) {
-        int month = date.getMonthValue();
-        return month >= 8 && month <= 10; // August to October
-    }
-    
+
     // Getters and Setters
     public String getBookingId() { return bookingId; }
     public void setBookingId(String bookingId) { this.bookingId = bookingId; }
-    
+
     public String getTourist() { return tourist; }
     public void setTourist(String tourist) { this.tourist = tourist; }
-    
+
     public String getAttraction() { return attraction; }
     public void setAttraction(String attraction) { this.attraction = attraction; }
-    
+
     public LocalDate getDate() { return date; }
-    public void setDate(LocalDate date) { 
-        this.date = date; 
-        this.festivalDiscount = isFestivalSeason(date);
-    }
-    
+    public void setDate(LocalDate date) { this.date = date; }
+
     public String getDifficulty() { return difficulty; }
     public void setDifficulty(String difficulty) { this.difficulty = difficulty; }
-    
+
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
-    
+
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
-    
+
     public String getGuide() { return guide; }
     public void setGuide(String guide) { this.guide = guide; }
-    
+
     public boolean isFestivalDiscount() { return festivalDiscount; }
     public void setFestivalDiscount(boolean festivalDiscount) { this.festivalDiscount = festivalDiscount; }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -72,10 +64,14 @@ public class Booking {
         sb.append("Date: ").append(date).append("\n");
         sb.append("Difficulty: ").append(difficulty).append("\n");
         sb.append("Price: $").append(price);
-        if (festivalDiscount) sb.append(" (20% Festival Discount Applied)");
+        if (festivalDiscount) {
+            sb.append(" (Festival Discount Applied)");
+        }
         sb.append("\n");
         sb.append("Status: ").append(status).append("\n");
-        if (guide != null) sb.append("Guide: ").append(guide).append("\n");
+        if (guide != null) {
+            sb.append("Guide: ").append(guide).append("\n");
+        }
         sb.append("------------------------\n");
         return sb.toString();
     }
