@@ -5,99 +5,91 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tourism.controller.RegisterController">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tourism.controller.RegisterController">
    <children>
-      <ScrollPane fitToWidth="true" prefHeight="600.0" prefWidth="800.0" style="-fx-background: linear-gradient(to bottom, #4169E1, #1E90FF);">
+      <ScrollPane fitToWidth="true" prefHeight="600.0" prefWidth="800.0" style="-fx-background: linear-gradient(to bottom, #1E90FF, #4169E1);">
          <content>
-            <VBox alignment="CENTER" minHeight="600.0" spacing="20.0">
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
+            <VBox alignment="CENTER" minHeight="600.0" style="-fx-background: linear-gradient(to bottom, #1E90FF, #4169E1);">
                <children>
-                  <VBox alignment="CENTER" maxWidth="500.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5);">
-                     <padding>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                     </padding>
+                  <VBox alignment="CENTER" maxWidth="400.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 5);">
                      <children>
-                        <Label fx:id="titleLabel" text="User Registration" textAlignment="CENTER">
+                        <Label fx:id="titleLabel" text="Register New Account" textAlignment="CENTER">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
+                           </VBox.margin>
                         </Label>
                         <VBox spacing="15.0">
                            <children>
-                              <HBox spacing="15.0">
+                              <VBox spacing="5.0">
                                  <children>
-                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label fx:id="usernameLabel" text="Username:" />
-                                          <TextField fx:id="usernameField" promptText="Enter username" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
-                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label fx:id="passwordLabel" text="Password:" />
-                                          <PasswordField fx:id="passwordField" promptText="Enter password" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
+                                    <Label fx:id="usernameLabel" text="Username:" />
+                                    <TextField fx:id="usernameField" promptText="Enter username" />
                                  </children>
-                              </HBox>
+                              </VBox>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <Label fx:id="passwordLabel" text="Password:" />
+                                    <PasswordField fx:id="passwordField" promptText="Enter password" />
+                                 </children>
+                              </VBox>
                               <VBox spacing="5.0">
                                  <children>
                                     <Label fx:id="fullNameLabel" text="Full Name:" />
-                                    <TextField fx:id="fullNameField" promptText="Enter full name" style="-fx-background-radius: 5;" />
+                                    <TextField fx:id="fullNameField" promptText="Enter full name" />
                                  </children>
                               </VBox>
-                              <HBox spacing="15.0">
+                              <VBox spacing="5.0">
                                  <children>
-                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label fx:id="emailLabel" text="Email:" />
-                                          <TextField fx:id="emailField" promptText="Enter email" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
-                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label fx:id="phoneLabel" text="Phone:" />
-                                          <TextField fx:id="phoneField" promptText="Enter phone" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
+                                    <Label fx:id="emailLabel" text="Email:" />
+                                    <TextField fx:id="emailField" promptText="Enter email" />
                                  </children>
-                              </HBox>
+                              </VBox>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <Label fx:id="phoneLabel" text="Phone:" />
+                                    <TextField fx:id="phoneField" promptText="Enter phone number" />
+                                 </children>
+                              </VBox>
                               <VBox spacing="5.0">
                                  <children>
                                     <Label fx:id="roleLabel" text="Role:" />
-                                    <ComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
+                                    <ComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308" />
                                  </children>
                               </VBox>
-                              <VBox fx:id="guideFieldsBox" spacing="15.0">
+                              <VBox fx:id="guideFieldsBox" spacing="5.0">
                                  <children>
-                                    <VBox spacing="5.0">
-                                       <children>
-                                          <Label fx:id="languagesLabel" text="Languages:" />
-                                          <TextField fx:id="languagesField" promptText="e.g., English, Nepali, Hindi" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
-                                    <VBox spacing="5.0">
-                                       <children>
-                                          <Label fx:id="experienceLabel" text="Experience:" />
-                                          <TextField fx:id="experienceField" promptText="e.g., 5 years" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
+                                    <Label fx:id="languagesLabel" text="Languages:" />
+                                    <TextField fx:id="languagesField" promptText="e.g., English, Nepali, Hindi" />
                                  </children>
                               </VBox>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <Label fx:id="experienceLabel" text="Experience:" />
+                                    <TextField fx:id="experienceField" promptText="e.g., 5 years mountain guiding" />
+                                 </children>
+                              </VBox>
+                              <Button fx:id="registerButton" maxWidth="1.7976931348623157E308" onAction="#handleRegister" style="-fx-background-color: #32CD32; -fx-text-fill: white; -fx-font-weight: bold;" text="Register">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="backButton" maxWidth="1.7976931348623157E308" onAction="#handleBack" style="-fx-background-color: #808080; -fx-text-fill: white;" text="Back" />
+                              <Label fx:id="messageLabel" textFill="RED" wrapText="true" />
+                              <Button fx:id="translateButton" maxWidth="1.7976931348623157E308" onAction="#handleTranslate" style="-fx-background-color: #FF6347; -fx-text-fill: white;" text="Translate to Nepali" />
                            </children>
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="30.0" right="30.0" />
+                           </VBox.margin>
                         </VBox>
-                        <HBox spacing="15.0">
-                           <children>
-                              <Button fx:id="registerButton" onAction="#handleRegister" prefWidth="150.0" style="-fx-background-color: #4169E1; -fx-text-fill: white; -fx-background-radius: 5;" text="Register" />
-                              <Button fx:id="backButton" onAction="#handleBack" prefWidth="150.0" style="-fx-background-color: #696969; -fx-text-fill: white; -fx-background-radius: 5;" text="Back to Login" />
-                           </children>
-                        </HBox>
-                        <Button fx:id="translateButton" onAction="#handleTranslate" style="-fx-background-color: #FF6347; -fx-text-fill: white; -fx-background-radius: 5;" text="Translate to Nepali" />
                      </children>
                   </VBox>
                </children>
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
             </VBox>
          </content>
       </ScrollPane>
