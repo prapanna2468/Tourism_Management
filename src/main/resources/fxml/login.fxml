@@ -5,49 +5,53 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tourism.controller.LoginController">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tourism.controller.LoginController">
    <children>
-      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #2E8B57, #228B22);">
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" style="-fx-background: linear-gradient(to bottom, #1E90FF, #4169E1);">
          <children>
-            <VBox alignment="CENTER" maxWidth="400.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5);">
-               <padding>
-                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-               </padding>
+            <VBox alignment="CENTER" maxHeight="400.0" maxWidth="350.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 5);">
                <children>
                   <Label fx:id="titleLabel" text="Nepal Tourism Management System" textAlignment="CENTER" wrapText="true">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
+                     </VBox.margin>
                   </Label>
                   <VBox spacing="15.0">
                      <children>
                         <VBox spacing="5.0">
                            <children>
                               <Label fx:id="usernameLabel" text="Username:" />
-                              <TextField fx:id="usernameField" promptText="Enter username" style="-fx-background-radius: 5;" />
+                              <TextField fx:id="usernameField" promptText="Enter username" />
                            </children>
                         </VBox>
                         <VBox spacing="5.0">
                            <children>
                               <Label fx:id="passwordLabel" text="Password:" />
-                              <PasswordField fx:id="passwordField" promptText="Enter password" style="-fx-background-radius: 5;" />
+                              <PasswordField fx:id="passwordField" promptText="Enter password" />
                            </children>
                         </VBox>
                         <VBox spacing="5.0">
                            <children>
                               <Label fx:id="roleLabel" text="Role:" />
-                              <ComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
+                              <ComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308" />
                            </children>
                         </VBox>
+                        <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" onAction="#handleLogin" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold;" text="Login">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="registerButton" maxWidth="1.7976931348623157E308" onAction="#handleRegister" style="-fx-background-color: #32CD32; -fx-text-fill: white;" text="Register" />
+                        <Label fx:id="messageLabel" textFill="RED" wrapText="true" />
+                        <Button fx:id="translateButton" maxWidth="1.7976931348623157E308" onAction="#handleTranslate" style="-fx-background-color: #FF6347; -fx-text-fill: white;" text="Translate to Nepali" />
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="30.0" />
+                     </VBox.margin>
                   </VBox>
-                  <HBox spacing="10.0">
-                     <children>
-                        <Button fx:id="loginButton" onAction="#handleLogin" prefWidth="120.0" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 5;" text="Login" />
-                        <Button fx:id="registerButton" onAction="#handleRegister" prefWidth="120.0" style="-fx-background-color: #228B22; -fx-text-fill: white; -fx-background-radius: 5;" text="Register" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="translateButton" onAction="#handleTranslate" style="-fx-background-color: #FF6347; -fx-text-fill: white; -fx-background-radius: 5;" text="Translate to Nepali" />
                </children>
             </VBox>
          </children>
