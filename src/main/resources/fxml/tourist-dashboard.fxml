@@ -7,7 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tourism.controller.TouristDashboardController">
    <top>
-      <VBox style="-fx-background-color: linear-gradient(to right, #2E8B57, #228B22);">
+      <VBox style="-fx-background-color: linear-gradient(to right, #1E90FF, #4169E1);">
          <children>
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                <padding>
@@ -33,76 +33,44 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
+            <VBox spacing="10.0">
                <children>
-                  <Label text="Book New Attraction" textFill="#2E8B57">
+                  <Label text="Available Attractions" textFill="#1E90FF">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <HBox spacing="15.0">
-                     <children>
-                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label text="Attraction:" />
-                              <ComboBox fx:id="attractionComboBox" maxWidth="1.7976931348623157E308" promptText="Select attraction" style="-fx-background-radius: 5;" />
-                           </children>
-                        </VBox>
-                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label text="Date:" />
-                              <DatePicker fx:id="datePicker" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
-                           </children>
-                        </VBox>
-                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label text="Difficulty:" />
-                              <ComboBox fx:id="difficultyComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="20.0">
-                     <children>
-                        <Label text="Price:" />
-                        <Label fx:id="priceLabel" text="$0.00" textFill="#2E8B57">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Button fx:id="bookButton" onAction="#handleBooking" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 5;" text="Book Attraction" />
-                     </children>
-                  </HBox>
+                  <TableView fx:id="attractionsTable" prefHeight="200.0">
+                     <columns>
+                        <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Name" />
+                        <TableColumn fx:id="altitudeColumn" prefWidth="100.0" text="Altitude" />
+                        <TableColumn fx:id="difficultyColumn" prefWidth="100.0" text="Difficulty" />
+                        <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price ($)" />
+                     </columns>
+                  </TableView>
                </children>
             </VBox>
-            <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" VBox.vgrow="ALWAYS">
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
+            <HBox spacing="15.0" alignment="CENTER_LEFT">
                <children>
-                  <HBox alignment="CENTER_LEFT" spacing="15.0">
-                     <children>
-                        <Label text="My Bookings" textFill="#2E8B57">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Button fx:id="updateButton" onAction="#handleUpdateBooking" style="-fx-background-color: #4169E1; -fx-text-fill: white; -fx-background-radius: 5;" text="Update Booking" />
-                        <Button fx:id="deleteButton" onAction="#handleDeleteBooking" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Delete Booking" />
-                     </children>
-                  </HBox>
-                  <TableView fx:id="bookingsTable" VBox.vgrow="ALWAYS">
+                  <Label text="Select Date:" />
+                  <DatePicker fx:id="bookingDatePicker" />
+                  <Button fx:id="bookButton" onAction="#handleBooking" style="-fx-background-color: #32CD32; -fx-text-fill: white; -fx-font-weight: bold;" text="Book Now" />
+               </children>
+            </HBox>
+            <Label fx:id="messageLabel" textFill="GREEN" wrapText="true" />
+            <VBox spacing="10.0">
+               <children>
+                  <Label text="My Bookings" textFill="#1E90FF">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="bookingsTable" prefHeight="200.0">
                      <columns>
                         <TableColumn fx:id="bookingIdColumn" prefWidth="80.0" text="ID" />
                         <TableColumn fx:id="attractionColumn" prefWidth="200.0" text="Attraction" />
                         <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
-                        <TableColumn fx:id="difficultyColumn" prefWidth="100.0" text="Difficulty" />
-                        <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
+                        <TableColumn fx:id="bookingPriceColumn" prefWidth="100.0" text="Price ($)" />
                         <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
                      </columns>
                   </TableView>
