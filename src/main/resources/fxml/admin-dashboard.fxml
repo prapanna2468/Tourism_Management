@@ -138,8 +138,8 @@
                                  <children>
                                     <TextField fx:id="attractionNameField" promptText="Attraction Name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                                     <ComboBox fx:id="altitudeComboBox" maxWidth="1.7976931348623157E308" promptText="Altitude" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                                    <ComboBox fx:id="difficultyComboBox" maxWidth="1.7976931348623157E308" promptText="Difficulty" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                                    <TextField fx:id="priceField" promptText="Base Price" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                    <ComboBox fx:id="attractionDifficultyComboBox" maxWidth="1.7976931348623157E308" promptText="Difficulty" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                    <TextField fx:id="basePriceField" promptText="Base Price" GridPane.columnIndex="3" GridPane.rowIndex="0" />
                                     <Button fx:id="addAttractionButton" maxWidth="1.7976931348623157E308" onAction="#handleAddAttraction" style="-fx-background-color: #32CD32; -fx-text-fill: white; -fx-font-weight: bold;" text="Add Attraction" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
@@ -229,51 +229,6 @@
                               </Label>
                            </children>
                         </VBox>
-                     </children>
-                  </VBox>
-               </content>
-            </Tab>
-            <Tab text="All Bookings">
-               <content>
-                  <VBox spacing="20.0">
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                     <children>
-                        <HBox spacing="30.0">
-                           <children>
-                              <Label fx:id="totalBookingsLabel" text="Total Bookings: 0" textFill="#1E90FF">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="totalRevenueLabel" text="Total Revenue: $0.00" textFill="#32CD32">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <VBox spacing="10.0">
-                           <children>
-                              <Label text="All Bookings" textFill="#1E90FF">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <TableView fx:id="allBookingsTable" prefHeight="250.0">
-                                 <columns>
-                                    <TableColumn fx:id="bookingIdColumn" prefWidth="80.0" text="ID" />
-                                    <TableColumn fx:id="touristColumn" prefWidth="120.0" text="Tourist" />
-                                    <TableColumn fx:id="attractionColumn" prefWidth="180.0" text="Attraction" />
-                                    <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
-                                    <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price ($)" />
-                                    <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </VBox>
-                        <Label fx:id="messageLabel" textFill="GREEN" wrapText="true" />
                      </children>
                   </VBox>
                </content>
