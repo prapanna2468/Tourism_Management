@@ -124,45 +124,25 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <HBox spacing="15.0">
+                              <GridPane hgap="10.0" vgap="10.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
-                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Attraction Name:" />
-                                          <TextField fx:id="attractionNameField" promptText="Enter attraction name" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
-                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Altitude:" />
-                                          <ComboBox fx:id="altitudeComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
+                                    <TextField fx:id="attractionNameField" promptText="Attraction Name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                    <ComboBox fx:id="altitudeComboBox" maxWidth="1.7976931348623157E308" promptText="Altitude" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <ComboBox fx:id="difficultyComboBox" maxWidth="1.7976931348623157E308" promptText="Difficulty" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                    <TextField fx:id="priceField" promptText="Base Price" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                    <Button fx:id="addAttractionButton" maxWidth="1.7976931348623157E308" onAction="#handleAddAttraction" style="-fx-background-color: #32CD32; -fx-text-fill: white; -fx-font-weight: bold;" text="Add Attraction" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                                  </children>
-                              </HBox>
-                              <HBox spacing="15.0">
-                                 <children>
-                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Difficulty:" />
-                                          <ComboBox fx:id="attractionDifficultyComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
-                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Base Price ($):" />
-                                          <TextField fx:id="basePriceField" promptText="Enter base price" style="-fx-background-radius: 5;" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <HBox spacing="10.0">
-                                 <children>
-                                    <Button fx:id="addAttractionButton" onAction="#handleAddAttraction" style="-fx-background-color: #2F4F4F; -fx-text-fill: white; -fx-background-radius: 5;" text="Add Attraction" />
-                                    <Button fx:id="updateAttractionButton" onAction="#handleUpdateAttraction" style="-fx-background-color: #4169E1; -fx-text-fill: white; -fx-background-radius: 5;" text="Update Attraction" />
-                                    <Button fx:id="deleteAttractionButton" onAction="#handleDeleteAttraction" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Delete Attraction" />
-                                 </children>
-                              </HBox>
+                              </GridPane>
                            </children>
                         </VBox>
                         <TableView fx:id="attractionsTable" VBox.vgrow="ALWAYS">
@@ -249,6 +229,51 @@
                               </Label>
                            </children>
                         </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="All Bookings">
+               <content>
+                  <VBox spacing="20.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label fx:id="totalBookingsLabel" text="Total Bookings: 0" textFill="#1E90FF">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="totalRevenueLabel" text="Total Revenue: $0.00" textFill="#32CD32">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox spacing="10.0">
+                           <children>
+                              <Label text="All Bookings" textFill="#1E90FF">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="allBookingsTable" prefHeight="250.0">
+                                 <columns>
+                                    <TableColumn fx:id="bookingIdColumn" prefWidth="80.0" text="ID" />
+                                    <TableColumn fx:id="touristColumn" prefWidth="120.0" text="Tourist" />
+                                    <TableColumn fx:id="attractionColumn" prefWidth="180.0" text="Attraction" />
+                                    <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+                                    <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price ($)" />
+                                    <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        <Label fx:id="messageLabel" textFill="GREEN" wrapText="true" />
                      </children>
                   </VBox>
                </content>
