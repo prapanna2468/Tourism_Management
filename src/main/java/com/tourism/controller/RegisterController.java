@@ -7,8 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterController {
     @FXML private TextField usernameField;
@@ -19,8 +17,7 @@ public class RegisterController {
     @FXML private ComboBox<String> roleComboBox;
     @FXML private TextField languagesField;
     @FXML private TextField experienceField;
-    @FXML private Button registerButton;
-    @FXML private Button backButton;
+    @FXML private Label messageLabel;
     @FXML private Button translateButton;
     @FXML private Label titleLabel;
     @FXML private Label usernameLabel;
@@ -31,130 +28,101 @@ public class RegisterController {
     @FXML private Label roleLabel;
     @FXML private Label languagesLabel;
     @FXML private Label experienceLabel;
-    
+    @FXML private Button registerButton;
+    @FXML private Button backButton;
+
     private boolean isNepali = false;
-    private Map<String, String> translations = new HashMap<>();
-    
+
     @FXML
     private void initialize() {
         roleComboBox.getItems().addAll("Tourist", "Guide");
         roleComboBox.setValue("Tourist");
         
         // Show/hide guide-specific fields based on role selection
-        roleComboBox.setOnAction(e -> toggleGuideFields());
-        toggleGuideFields();
+        roleComboBox.setOnAction(e -> {
+            boolean isGuide = "Guide".equals(roleComboBox.getValue());
+            languagesField.setVisible(isGuide);
+            experienceField.setVisible(isGuide);
+            languagesLabel.setVisible(isGuide);
+            experienceLabel.setVisible(isGuide);
+        });
         
-        initializeTranslations();
+        // Initially hide guide fields
+        languagesField.setVisible(false);
+        experienceField.setVisible(false);
+        languagesLabel.setVisible(false);
+        experienceLabel.setVisible(false);
     }
-    
-    private void initializeTranslations() {
-        translations.put("User Registration", "प्रयोगकर्ता दर्ता");
-        translations.put("Username:", "प्रयोगकर्ता नाम:");
-        translations.put("Password:", "पासवर्ड:");
-        translations.put("Full Name:", "पूरा नाम:");
-        translations.put("Email:", "इमेल:");
-        translations.put("Phone:", "फोन:");
-        translations.put("Role:", "भूमिका:");
-        translations.put("Languages:", "भाषाहरू:");
-        translations.put("Experience:", "अनुभव:");
-        translations.put("Register", "दर्ता");
-        translations.put("Back to Login", "लगइनमा फर्कनुहोस्");
-        translations.put("Translate to Nepali", "नेपालीमा अनुवाद");
-        translations.put("Translate to English", "अंग्रेजीमा अनुवाद");
-        translations.put("Tourist", "पर्यटक");
-        translations.put("Guide", "गाइड");
-    }
-    
-    private void toggleGuideFields() {
-        boolean isGuide = "Guide".equals(roleComboBox.getValue()) || 
-                         "गाइड".equals(roleComboBox.getValue());
-        languagesField.setVisible(isGuide);
-        experienceField.setVisible(isGuide);
-        languagesLabel.setVisible(isGuide);
-        experienceLabel.setVisible(isGuide);
-    }
-    
+
     @FXML
     private void handleRegister() {
-        if (!validateFields()) {
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText();
+        String fullName = fullNameField.getText().trim();
+        String email = emailField.getText().trim();
+        String phone = phoneField.getText().trim();
+        String role = roleComboBox.getValue();
+
+        if (username.isEmpty() || password.isEmpty() || fullName.isEmpty() || 
+            email.isEmpty() || phone.isEmpty()) {
+            messageLabel.setText(isNepali ? "कृपया सबै आवश्यक फिल्डहरू भर्नुहोस्" : "Please fill all required fields");
             return;
         }
-        
-        String role = roleComboBox.getValue();
-        if (isNepali) {
-            // Convert Nepali role back to English
-            if ("पर्यटक".equals(role)) role = "Tourist";
-            else if ("गाइड".equals(role)) role = "Guide";
-        }
-        
+
         User user;
         if ("Guide".equals(role)) {
-            user = new User(
-                usernameField.getText().trim(),
-                passwordField.getText().trim(),
-                fullNameField.getText().trim(),
-                emailField.getText().trim(),
-                phoneField.getText().trim(),
-                role,
-                languagesField.getText().trim(),
-                experienceField.getText().trim()
-            );
+            String languages = languagesField.getText().trim();
+            String experience = experienceField.getText().trim();
+            if (languages.isEmpty() || experience.isEmpty()) {
+                messageLabel.setText(isNepali ? "गाइडका लागि भाषा र अनुभव आवश्यक छ" : "Languages and experience required for guides");
+                return;
+            }
+            user = new User(username, password, fullName, email, phone, role, languages, experience);
         } else {
-            user = new User(
-                usernameField.getText().trim(),
-                passwordField.getText().trim(),
-                fullNameField.getText().trim(),
-                emailField.getText().trim(),
-                phoneField.getText().trim(),
-                role
-            );
+            user = new User(username, password, fullName, email, phone, role);
         }
-        
-        FileManager.saveUser(user);
-        showAlert("Success", "Registration successful! Please login with your credentials.", Alert.AlertType.INFORMATION);
-        handleBack();
+
+        try {
+            FileManager.saveUser(user);
+            messageLabel.setText(isNepali ? "सफल दर्ता! कृपया लगइन गर्नुहोस्" : "Registration successful! Please login");
+            
+            // Clear fields
+            clearFields();
+        } catch (Exception e) {
+            messageLabel.setText(isNepali ? "दर्ता त्रुटि: " + e.getMessage() : "Registration error: " + e.getMessage());
+        }
     }
-    
+
     @FXML
     private void handleBack() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
             Scene scene = new Scene(loader.load(), 800, 600);
-            Stage stage = (Stage) backButton.getScene().getWindow();
+            Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     private void handleTranslate() {
         isNepali = !isNepali;
-        updateLanguage();
-    }
-    
-    private void updateLanguage() {
         if (isNepali) {
-            titleLabel.setText(translations.get("User Registration"));
-            usernameLabel.setText(translations.get("Username:"));
-            passwordLabel.setText(translations.get("Password:"));
-            fullNameLabel.setText(translations.get("Full Name:"));
-            emailLabel.setText(translations.get("Email:"));
-            phoneLabel.setText(translations.get("Phone:"));
-            roleLabel.setText(translations.get("Role:"));
-            languagesLabel.setText(translations.get("Languages:"));
-            experienceLabel.setText(translations.get("Experience:"));
-            registerButton.setText(translations.get("Register"));
-            backButton.setText(translations.get("Back to Login"));
-            translateButton.setText(translations.get("Translate to English"));
-            
-            // Update ComboBox
-            String selectedRole = roleComboBox.getValue();
-            roleComboBox.getItems().clear();
-            roleComboBox.getItems().addAll(translations.get("Tourist"), translations.get("Guide"));
-            roleComboBox.setValue(translations.get(selectedRole));
+            titleLabel.setText("नयाँ खाता दर्ता गर्नुहोस्");
+            usernameLabel.setText("प्रयोगकर्ता नाम:");
+            passwordLabel.setText("पासवर्ड:");
+            fullNameLabel.setText("पूरा नाम:");
+            emailLabel.setText("इमेल:");
+            phoneLabel.setText("फोन:");
+            roleLabel.setText("भूमिका:");
+            languagesLabel.setText("भाषाहरू:");
+            experienceLabel.setText("अनुभव:");
+            registerButton.setText("दर्ता गर्नुहोस्");
+            backButton.setText("फिर्ता");
+            translateButton.setText("अंग्रेजीमा अनुवाद गर्नुहोस्");
         } else {
-            titleLabel.setText("User Registration");
+            titleLabel.setText("Register New Account");
             usernameLabel.setText("Username:");
             passwordLabel.setText("Password:");
             fullNameLabel.setText("Full Name:");
@@ -164,52 +132,19 @@ public class RegisterController {
             languagesLabel.setText("Languages:");
             experienceLabel.setText("Experience:");
             registerButton.setText("Register");
-            backButton.setText("Back to Login");
+            backButton.setText("Back");
             translateButton.setText("Translate to Nepali");
-            
-            // Update ComboBox
-            String selectedRole = roleComboBox.getValue();
-            roleComboBox.getItems().clear();
-            roleComboBox.getItems().addAll("Tourist", "Guide");
-            
-            // Convert back to English
-            for (Map.Entry<String, String> entry : translations.entrySet()) {
-                if (entry.getValue().equals(selectedRole)) {
-                    roleComboBox.setValue(entry.getKey());
-                    break;
-                }
-            }
         }
-        toggleGuideFields();
     }
-    
-    private boolean validateFields() {
-        if (usernameField.getText().trim().isEmpty() ||
-            passwordField.getText().trim().isEmpty() ||
-            fullNameField.getText().trim().isEmpty() ||
-            emailField.getText().trim().isEmpty() ||
-            phoneField.getText().trim().isEmpty()) {
-            
-            showAlert("Validation Error", "Please fill in all required fields.", Alert.AlertType.ERROR);
-            return false;
-        }
-        
-        String role = roleComboBox.getValue();
-        if (isNepali && "गाइड".equals(role) || !isNepali && "Guide".equals(role)) {
-            if (languagesField.getText().trim().isEmpty() || experienceField.getText().trim().isEmpty()) {
-                showAlert("Validation Error", "Please fill in languages and experience for guides.", Alert.AlertType.ERROR);
-                return false;
-            }
-        }
-        
-        return true;
-    }
-    
-    private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+
+    private void clearFields() {
+        usernameField.clear();
+        passwordField.clear();
+        fullNameField.clear();
+        emailField.clear();
+        phoneField.clear();
+        languagesField.clear();
+        experienceField.clear();
+        roleComboBox.setValue("Tourist");
     }
 }
