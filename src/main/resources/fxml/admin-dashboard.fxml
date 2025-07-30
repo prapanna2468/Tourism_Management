@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tourism.controller.AdminDashboardController">
+   <top>
+      <VBox style="-fx-background-color: linear-gradient(to right, #2F4F4F, #696969);">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+               </padding>
+               <children>
+                  <Label fx:id="welcomeLabel" text="Welcome, Administrator!" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="translateButton" onAction="#handleTranslate" style="-fx-background-color: #FF6347; -fx-text-fill: white; -fx-background-radius: 5;" text="Translate to Nepali" />
+                  <Button fx:id="logoutButton" onAction="#handleLogout" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Logout" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Guide Management">
+               <content>
+                  <VBox spacing="20.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <children>
+                              <Label text="Add New Guide" textFill="#2F4F4F">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Full Name:" />
+                                          <TextField fx:id="guideNameField" promptText="Enter guide name" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Username:" />
+                                          <TextField fx:id="guideUsernameField" promptText="Enter username" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Password:" />
+                                          <PasswordField fx:id="guidePasswordField" promptText="Enter password" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Languages:" />
+                                          <TextField fx:id="guideLanguagesField" promptText="e.g., English, Nepali, Hindi" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Experience:" />
+                                          <TextField fx:id="guideExperienceField" promptText="e.g., 5 years" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Button fx:id="addGuideButton" onAction="#handleAddGuide" style="-fx-background-color: #2F4F4F; -fx-text-fill: white; -fx-background-radius: 5;" text="Add Guide" />
+                                    <Button fx:id="updateGuideButton" onAction="#handleUpdateGuide" style="-fx-background-color: #4169E1; -fx-text-fill: white; -fx-background-radius: 5;" text="Update Guide" />
+                                    <Button fx:id="deleteGuideButton" onAction="#handleDeleteGuide" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Delete Guide" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <TableView fx:id="guidesTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="guideNameColumn" prefWidth="150.0" text="Name" />
+                              <TableColumn fx:id="guideUsernameColumn" prefWidth="120.0" text="Username" />
+                              <TableColumn fx:id="guideLanguagesColumn" prefWidth="200.0" text="Languages" />
+                              <TableColumn fx:id="guideExperienceColumn" prefWidth="100.0" text="Experience" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Attraction Management">
+               <content>
+                  <VBox spacing="20.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <children>
+                              <Label text="Add New Attraction" textFill="#2F4F4F">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Attraction Name:" />
+                                          <TextField fx:id="attractionNameField" promptText="Enter attraction name" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Altitude:" />
+                                          <ComboBox fx:id="altitudeComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Difficulty:" />
+                                          <ComboBox fx:id="attractionDifficultyComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Base Price ($):" />
+                                          <TextField fx:id="basePriceField" promptText="Enter base price" style="-fx-background-radius: 5;" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Button fx:id="addAttractionButton" onAction="#handleAddAttraction" style="-fx-background-color: #2F4F4F; -fx-text-fill: white; -fx-background-radius: 5;" text="Add Attraction" />
+                                    <Button fx:id="updateAttractionButton" onAction="#handleUpdateAttraction" style="-fx-background-color: #4169E1; -fx-text-fill: white; -fx-background-radius: 5;" text="Update Attraction" />
+                                    <Button fx:id="deleteAttractionButton" onAction="#handleDeleteAttraction" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Delete Attraction" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <TableView fx:id="attractionsTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="attractionNameColumn" prefWidth="200.0" text="Name" />
+                              <TableColumn fx:id="altitudeColumn" prefWidth="100.0" text="Altitude" />
+                              <TableColumn fx:id="attractionDifficultyColumn" prefWidth="100.0" text="Difficulty" />
+                              <TableColumn fx:id="basePriceColumn" prefWidth="100.0" text="Base Price" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Booking Management">
+               <content>
+                  <VBox spacing="20.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button fx:id="editBookingButton" onAction="#handleEditBooking" style="-fx-background-color: #4169E1; -fx-text-fill: white; -fx-background-radius: 5;" text="Edit Booking" />
+                              <Button fx:id="cancelBookingButton" onAction="#handleCancelBooking" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Cancel Booking" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="bookingsTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="bookingIdColumn" prefWidth="80.0" text="ID" />
+                              <TableColumn fx:id="touristColumn" prefWidth="120.0" text="Tourist" />
+                              <TableColumn fx:id="bookingAttractionColumn" prefWidth="200.0" text="Attraction" />
+                              <TableColumn fx:id="bookingDateColumn" prefWidth="100.0" text="Date" />
+                              <TableColumn fx:id="bookingStatusColumn" prefWidth="100.0" text="Status" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Analytics">
+               <content>
+                  <VBox spacing="20.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox spacing="20.0">
+                           <children>
+                              <VBox spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                                 <children>
+                                    <PieChart fx:id="nationalityChart" prefHeight="300.0" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                                 <children>
+                                    <BarChart fx:id="popularAttractionsChart" prefHeight="300.0">
+                                       <xAxis>
+                                          <CategoryAxis side="BOTTOM" />
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis side="LEFT" />
+                                       </yAxis>
+                                    </BarChart>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <children>
+                              <Label fx:id="totalRevenueLabel" text="Total Revenue: $0.00" textFill="#2F4F4F">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
