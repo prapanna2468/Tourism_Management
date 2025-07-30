@@ -1,8 +1,5 @@
 package com.tourism.model;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 public class User {
     private String username;
     private String password;
@@ -12,63 +9,49 @@ public class User {
     private String role;
     private String languages;
     private String experience;
-    
+
     public User() {}
-    
+
     public User(String username, String password, String fullName, String email, String phone, String role) {
         this.username = username;
-        this.password = hashPassword(password);
+        this.password = password;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.role = role;
     }
-    
+
     public User(String username, String password, String fullName, String email, String phone, String role, String languages, String experience) {
         this(username, password, fullName, email, phone, role);
         this.languages = languages;
         this.experience = experience;
     }
-    
-    public static String hashPassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hashedBytes = md.digest(password.getBytes());
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hashedBytes) {
-                sb.append(String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            return password; // Fallback to plain text if hashing fails
-        }
-    }
-    
+
     // Getters and Setters
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
-    
+
     public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = hashPassword(password); }
-    
+    public void setPassword(String password) { this.password = password; }
+
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
-    
+
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-    
+
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
-    
+
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
-    
+
     public String getLanguages() { return languages; }
     public void setLanguages(String languages) { this.languages = languages; }
-    
+
     public String getExperience() { return experience; }
     public void setExperience(String experience) { this.experience = experience; }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
