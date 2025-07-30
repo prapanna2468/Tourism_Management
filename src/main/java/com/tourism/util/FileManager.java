@@ -63,11 +63,11 @@ public class FileManager {
         String filename = role.equals("Admin") ? null : 
                          (role.equals("Tourist") ? TOURISTS_FILE : GUIDES_FILE);
         
-        // Admin authentication
+        // Admin authentication - Changed to "admin"
         if (role.equals("Admin")) {
-            if (username.equals("Prapanna") && password.equals("123")) {
+            if (username.equals("admin") && password.equals("123")) {
                 User admin = new User();
-                admin.setUsername("Prapanna");
+                admin.setUsername("admin");
                 admin.setFullName("Administrator");
                 admin.setRole("Admin");
                 return admin;
@@ -87,7 +87,7 @@ public class FileManager {
                     userFound = user.getUsername().equals(username);
                 } else if (line.startsWith("Password: ") && userFound) {
                     String storedPassword = line.substring(10);
-                    if (storedPassword.equals(User.hashPassword(password))) {
+                    if (storedPassword.equals(password)) { // Direct password comparison - no hashing
                         // Continue reading user details
                         while ((line = reader.readLine()) != null && !line.equals("------------------------")) {
                             if (line.startsWith("Full Name: ")) {
