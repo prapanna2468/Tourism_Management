@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tourism.controller.TouristDashboardController">
+   <top>
+      <VBox style="-fx-background-color: linear-gradient(to right, #2E8B57, #228B22);">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+               </padding>
+               <children>
+                  <Label fx:id="welcomeLabel" text="Welcome, Tourist!" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="translateButton" onAction="#handleTranslate" style="-fx-background-color: #FF6347; -fx-text-fill: white; -fx-background-radius: 5;" text="Translate to Nepali" />
+                  <Button fx:id="logoutButton" onAction="#handleLogout" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Logout" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox spacing="20.0">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Label text="Book New Attraction" textFill="#2E8B57">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox spacing="15.0">
+                     <children>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Attraction:" />
+                              <ComboBox fx:id="attractionComboBox" maxWidth="1.7976931348623157E308" promptText="Select attraction" style="-fx-background-radius: 5;" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Date:" />
+                              <DatePicker fx:id="datePicker" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Difficulty:" />
+                              <ComboBox fx:id="difficultyComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 5;" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="20.0">
+                     <children>
+                        <Label text="Price:" />
+                        <Label fx:id="priceLabel" text="$0.00" textFill="#2E8B57">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="bookButton" onAction="#handleBooking" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 5;" text="Book Attraction" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="15.0">
+                     <children>
+                        <Label text="My Bookings" textFill="#2E8B57">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="updateButton" onAction="#handleUpdateBooking" style="-fx-background-color: #4169E1; -fx-text-fill: white; -fx-background-radius: 5;" text="Update Booking" />
+                        <Button fx:id="deleteButton" onAction="#handleDeleteBooking" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Delete Booking" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="bookingsTable" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="bookingIdColumn" prefWidth="80.0" text="ID" />
+                        <TableColumn fx:id="attractionColumn" prefWidth="200.0" text="Attraction" />
+                        <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+                        <TableColumn fx:id="difficultyColumn" prefWidth="100.0" text="Difficulty" />
+                        <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
+                        <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
