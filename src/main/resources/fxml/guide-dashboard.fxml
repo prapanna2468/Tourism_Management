@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tourism.controller.GuideDashboardController">
+   <top>
+      <VBox style="-fx-background-color: linear-gradient(to right, #FF8C00, #FFA500);">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+               </padding>
+               <children>
+                  <Label fx:id="welcomeLabel" text="Welcome, Guide!" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="translateButton" onAction="#handleTranslate" style="-fx-background-color: #FF6347; -fx-text-fill: white; -fx-background-radius: 5;" text="Translate to Nepali" />
+                  <Button fx:id="logoutButton" onAction="#handleLogout" style="-fx-background-color: #DC143C; -fx-text-fill: white; -fx-background-radius: 5;" text="Logout" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox spacing="20.0">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <HBox spacing="20.0">
+               <children>
+                  <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <Label text="Profile Information" textFill="#FF8C00">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <VBox spacing="10.0">
+                           <children>
+                              <Label fx:id="earningsLabel" text="Earnings: $0.00">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="languagesLabel" text="Languages: English, Nepali" />
+                              <Label fx:id="experienceLabel" text="Experience: 5 years" />
+                           </children>
+                        </VBox>
+                     </padding>
+                  </VBox>
+                  <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <Label text="Upcoming Treks" textFill="#FF8C00">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="treksTable" prefHeight="200.0">
+                           <columns>
+                              <TableColumn fx:id="touristColumn" prefWidth="120.0" text="Tourist" />
+                              <TableColumn fx:id="trekColumn" prefWidth="150.0" text="Trek" />
+                              <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+                              <TableColumn fx:id="difficultyColumn" prefWidth="100.0" text="Difficulty" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Label text="Important Updates & Alerts" textFill="#FF8C00">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="updatesArea" editable="false" prefHeight="200.0" style="-fx-background-radius: 5;" wrapText="true" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
